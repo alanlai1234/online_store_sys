@@ -57,6 +57,24 @@ void print_item(void){
 }
 
 int main(void){
+    
+    //0=if the system has been shut down, 1=still operates
+    int flag;
+    FILE *op=fopen("operate.txt", "r");
+    fscanf(op, "%d", &flag);
+    fclose(op);
+    if(!flag){
+        printf("the system has been shuted down, authenticate with adminstrater account to start system operation\n");
+        if(login("admin.txt")){
+            FILE *op2 = fopen("operate.txt", "w+");
+            fprintf(op2, "1");
+            printf("system restart\n");
+        }
+        else{
+            return 0;
+        }
+    }
+
     time(&now);
     //enter items into ITEM pointers
     FILE *fp;
@@ -200,7 +218,7 @@ void admin(void){
     while(1)
     {
         printf("adminstrater page-------------------------------\n");
-        printf("1)show all items\n2)add item\n3)delete item\n4)print item log\n0)exit\n");
+        printf("1)show all items\n2)add item\n3)delete item\n4)print item log\n5)shut down system\n0)exit\n");
         printf("------------------------------------------------\n");
 
         int choice;
@@ -307,6 +325,18 @@ void admin(void){
                 while(fgets(buff, 80, itemlog)!=NULL){
                     printf("%s", buff);
                 }
+
+                }
+            //shut down system
+            case 5:
+                {
+                
+                FILE *op=fopen("operate.txt", "w+");
+                fprintf(op, "0");
+                fclose(op);
+                printf("system close\n");
+                exit(1);
+
                 }
             default:
                 break;
