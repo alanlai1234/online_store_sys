@@ -334,7 +334,7 @@ void admin(void){
                 FILE *op=fopen("operate.txt", "w+");
                 fprintf(op, "0");
                 fclose(op);
-                printf("system close\n");
+                printf("system closed\n");
                 exit(1);
 
                 }
