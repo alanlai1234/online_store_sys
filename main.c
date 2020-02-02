@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include "custom.h"
+// #include "admin.h"
 
 //item code format
 // code[0]='#';
@@ -9,52 +11,18 @@
 // code[5]='<';
 // code[6]='\0';
 
-
-typedef struct cart
-{
-    char idcode[10];
-    struct cart *next;
-}CART;
-
-typedef struct item
-{
-    char name[50];
-    char descrip[100];
-    char seller[20];
-    char idcode[10];
-    float price;
-    struct item *next;
-}ITEM;
-
 ITEM *head, *end;
 FILE *itemlog;
 time_t now;
 
 //login info
-char accname[20];
+// char accname[20];
 
-int delete(char[], int);
-int login(char[]);
 void admin(void);
 void buyer(void);
 void seller(void);
 void create_acc(void);
-
-void print_item(void){
-    ITEM *move=head;
-    int cur=1;
-    printf("\033[1;32m");
-
-    while(move->next!=NULL){
-        printf("(%d) $%f\nitem name : %s\n", cur++, move->price, move->name);
-        printf("description : %s\n", move->descrip);
-        printf("seller : %s\n", move->seller);
-        printf("id code : %s\n\n", move->idcode);
-        move=move->next;
-    }
-
-    printf("\033[0m");
-}
+int delete(char profile[], int choice);
 
 int main(void){
     
@@ -64,11 +32,11 @@ int main(void){
     fscanf(op, "%d", &flag);
     fclose(op);
     if(!flag){
-        printf("the system has been shuted down, authenticate with adminstrater account to start system operation\n");
+        printf("the system had been shut down, authenticate with adminstrater account to activate system operations\n");
         if(login("admin.txt")){
             FILE *op2 = fopen("operate.txt", "w+");
             fprintf(op2, "1");
-            printf("system restart\n");
+            printf("system restarted\n");
         }
         else{
             return 0;
@@ -154,62 +122,6 @@ int main(void){
     fclose(itemlog);
 }
 
-int login(char filename[]){
-    char name[20], pw[25], name_login[20], psw_login[25];
-    int flag;
-    FILE *fp;
-    fp=fopen(filename, "r");
-    printf("login page-----------------------------\n");
-
-    while(1){
-        flag=0;
-        //back from start
-        fseek(fp, 0, SEEK_SET);
-
-        printf("enter user name, or 0 to exit : ");
-        scanf("%s", name);
-
-        //exit
-        if(!strcmp(name, "0")){
-            fclose(fp);
-            return 0;
-        }
-
-        //scan from inputted name
-        while(fscanf(fp, "%s %s", name_login, psw_login)!=EOF){
-            //inputted name found
-            if(!strcmp(name, name_login)){
-                flag=1;
-                break;
-            }
-        }
-        
-        //if inputted name found
-        if(flag){
-            while(1){
-                printf("enter password, or 0 to enter username again : ");
-                scanf("%s", pw);
-                //back to input name
-                if(!strcmp(pw, "0")){
-                    break;
-                }
-                //password correct
-                if(!strcmp(pw, psw_login)){
-                    strcpy(accname, name);
-                    printf("\033[0;31m");
-                    printf("welcome back %s!\n", accname);
-                    printf("\033[0m");
-                    fclose(fp);
-                    return 1;
-                }
-                printf("password not match\n");
-            }
-            continue;
-        }
-        printf("name not found\n");
-    }
-}
-
 void admin(void){
 
     if(!login("admin.txt")){
@@ -232,7 +144,7 @@ void admin(void){
         {
             //show items
             case 1:
-                print_item();
+                print_item(head);
                 break;
             
             //add item
@@ -249,7 +161,7 @@ void admin(void){
 
                 //name
                 printf("input product name (max 50 words) : ");
-                getchar();
+                // getchar();
                 fgets(buff, 50, stdin);
                 buff[strlen(buff)-1]='\0';
                 strcpy(tmp->name, buff);
@@ -304,7 +216,7 @@ void admin(void){
             //delete item
             case 3:
                 {
-                print_item();
+                print_item(head);
                 printf("enter id (-1 to exit) : ");
                 scanf("%d", &choice);
 
@@ -325,12 +237,13 @@ void admin(void){
                 while(fgets(buff, 80, itemlog)!=NULL){
                     printf("%s", buff);
                 }
-
+                
+                break;
                 }
             //shut down system
             case 5:
                 {
-                
+                printf("hi\n");
                 FILE *op=fopen("operate.txt", "w+");
                 fprintf(op, "0");
                 fclose(op);
@@ -440,7 +353,7 @@ void buyer (void){
         int cur=1, flag=0;
 
         printf("buyer page-----------------------------------------------------\n");
-        print_item();
+        print_item(head);
         printf("select item (0 show your cart, -1 exit) : ");
 
         scanf("%d", &choice);
@@ -588,7 +501,6 @@ void buyer (void){
                 }
 
                 strcpy(my_cart->idcode, tmp->idcode);
-                printf("%s\n", my_cart->idcode);
                 printf("item added to your cart\n");
             }
         }
