@@ -1,6 +1,8 @@
 # simple_store_sys
 a simple store system includes admin, buyer, seller accounts
 
+the "custom.h" header file is where some functions and types
+
 program is in the "main.c" as the file name suggest, and the output file is "main"
 
 "admin.txt", "buyer.txt", "seller.txt" is where the accounts are stored

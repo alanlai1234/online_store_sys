@@ -13,7 +13,9 @@ typedef struct item
     char seller[20];
     char idcode[10];
     float price;
+    int amount;
     struct item *next;
+    struct item *cart_next;//only for quick access of a buyer's cart
 }ITEM;
 
 char accname[20];
@@ -27,7 +29,8 @@ void print_item(ITEM *head){
         printf("(%d) $%f\nitem name : %s\n", cur++, move->price, move->name);
         printf("description : %s\n", move->descrip);
         printf("seller : %s\n", move->seller);
-        printf("id code : %s\n\n", move->idcode);
+        printf("id code : %s\n", move->idcode);
+        printf("amount : %d\n\n", move->amount);
         move=move->next;
     }
 

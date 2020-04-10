@@ -3,33 +3,46 @@ macbook 2018
 allan
 62000.000000
 #3871<
+20
 razer mouse
 rgb light, black
 kay
 2999.000000
 #9119<
+11
 backpack
 blue
 allan
 561.000000
 #6755<
-sony earset
+5
+Sony earnest
 anti-noise
 allan
 890.000000
 #9540<
+12
 under armour curry 9000
 blue & yellow
 edral
 3000.000000
 #0248<
+3
 iphone 12 pro
 latest flagship phone
 alan(admin)
-30000.000000
+3000.000000
 #3905<
-C book 
+0
+C tutorial
 education use
 allan
 200.000000
 #7938<
+7
+medical face mask
+very important when pandemic
+alan(admin)
+10.000000
+#0904<
+20

@@ -1,89 +1,135 @@
-Sat Sep 21 10:08:05 2019
-(removed by admin)
-----seller : kay
-----name : samsung s9 plus
-    description : samsung newest flagship smartphone
-
-Sat Sep 21 10:09:27 2019
-(removed by admin)
-----seller : kay
-----name : samsung s9 plus
-    description : samsung newest flagship smartphone
-
-Sat Sep 21 10:09:36 2019
-(added by admin)
-----seller : alan(admin)
-----name : iphone 12 pro
-    description : latest flagship phone
-    price : 30000.000000
-
-Sat Sep 21 10:11:08 2019
+Tue Mar  3 22:37:15 2020
 (bought by Tony)
-----seller : alan(admin)
-----name : apple pro stand
-    description : professional monitor stand
-
-Sat Sep 21 10:13:39 2019
-(remove by seller)
-----seller : allan
-----name : C book
-    description : Education use
-
-Sat Sep 21 10:13:39 2019
-(added by seller)
 ----seller : allan
 ----name : C book 
     description : education use
+    price : 200.000000
+    amount : 21
+Sat Apr  4 18:55:00 2020
+(bought by Tony)
+----seller : allan
+----name : C book 
+    description : education use
+    price : 200.000000
+    amount : 7
 
-Fri Jan 24 14:26:11 2020
+Fri Apr 10 23:06:48 2020
+(bought by Tony)
+----seller : allan
+----name : sony earset
+    description : anti-noise
+    price : 890.000000
+    amount : 12
+
+Fri Apr 10 23:06:48 2020
+(bought by Tony)
+----seller : edral
+----name : under armour curry 9000
+    description : blue & yellow
+    price : 3000.000000
+    amount : 2
+
+Fri Apr 10 23:20:44 2020
+(bought by Tony)
+----seller : allan
+----name : Sony earnest
+    description : anti-noise
+    price : 890.000000
+    amount : 11
+
+Fri Apr 10 23:20:44 2020
+(bought by Tony)
+----seller : edral
+----name : under armour curry 9000
+    description : blue & yellow
+    price : 3000.000000
+    amount : 2
+
+Fri Apr 10 23:21:36 2020
+(bought by Tony)
+----seller : allan
+----name : Sony earnest
+    description : anti-noise
+    price : 890.000000
+    amount : 11
+
+Fri Apr 10 23:21:36 2020
+(bought by Tony)
+----seller : edral
+----name : under armour curry 9000
+    description : blue & yellow
+    price : 3000.000000
+    amount : 2
+
+Fri Apr 10 23:22:05 2020
+(bought by Tony)
+----seller : allan
+----name : Sony earnest
+    description : anti-noise
+    price : 890.000000
+    amount : 11
+
+Fri Apr 10 23:22:05 2020
+(bought by Tony)
+----seller : edral
+----name : under armour curry 9000
+    description : blue & yellow
+    price : 3000.000000
+    amount : 2
+
+Fri Apr 10 23:22:33 2020
+(bought by Tony)
+----seller : allan
+----name : C tutorial
+    description : education use
+    price : 200.000000
+    amount : 6
+
+Fri Apr 10 23:24:21 2020
+(removed by admin)
+----seller : allan
+----name : C tutorial
+    description : education use
+    price : 200.000000
+    amount : 7
+
+Fri Apr 10 23:24:47 2020
+(bought by Tony)
+----seller : allan
+----name : C tutorial
+    description : education use
+    price : 200.000000
+    amount : 6
+
+Fri Apr 10 23:25:07 2020
+(bought by Tony)
+----seller : allan
+----name : C tutorial
+    description : education use
+    price : 200.000000
+    amount : 7
+
+Fri Apr 10 23:27:40 2020
+(bought by Tony)
+----seller : allan
+----name : C tutorial
+    description : education use
+    price : 200.000000
+    amount : 6
+
+Fri Apr 10 23:32:05 2020
 (added by admin)
 ----seller : alan(admin)
-----name : a socka
-    description : its very good
-    price : 300.000000
+----name : face mask
+    description : very important when pandemic
+    price : 10.000000
+    amount : 20
 
-Sun Feb  2 20:32:04 2020
+Fri Apr 10 23:34:36 2020
 (added by admin)
 ----seller : alan(admin)
-----name : omfort tissue paper
-    description : very comfortable and fluffy, also pretty durable
-    price : 100.000000
-
-Sun Feb  2 20:34:24 2020
-(added by admin)
-----seller : alan(admin)
-----name : 1erer
-    description : ere
-    price : 21.000000
-
-Sun Feb  2 20:34:24 2020
-(removed by admin)
-----seller : alan(admin)
-----name : 1erer
-    description : ere
-
-Sun Feb  2 20:34:24 2020
-(removed by admin)
-----seller : alan(admin)
-----name : omfort tissue paper
-    description : very comfortable and fluffy, also pretty durable
-
-Sun Feb  2 22:29:01 2020
-(added by admin)
-----seller : alan(admin)
-----name : 23
-    description : 3r23
-    price : 1212.000000
-
-Sun Feb  2 22:29:01 2020
-(removed by admin)
-----seller : alan(admin)
-----name : 23
-    description : 3r23
-
-Sun Feb  2 22:29:01 2020
-(removed by admin)
-----seller : alan(admin)
-----name : omfort tissue paper
-    description : very comfortable and fluffy, also pretty durable
+----name : medical face mask
+    description : very important when pandemic
+    price : 10.000000
+    amount : 20
 
