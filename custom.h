@@ -15,7 +15,6 @@ typedef struct item
     float price;
     int amount;
     struct item *next;
-    struct item *cart_next;//only for quick access of a buyer's cart
 }ITEM;
 
 char accname[20];

@@ -316,6 +316,7 @@ void buyer(void)
         {
             fgetc(fp);
             fgets(buff, 50, fp);
+            // printf("%s", buff);
             buff[strlen(buff) - 1] = '\0';
             //inputted name found
             if (!strcmp(name, name_login))
@@ -360,10 +361,9 @@ void buyer(void)
     }
     //login ends
 
-    int cartempty = 1;
     CART *cart_head, *my_cart = (CART *)malloc(sizeof(CART)), *cart_end;
     cart_head = my_cart;
-    int cart_amount=1;
+    int cart_amount=0;
 
     //split string to CART pointers
     char *delim = " ";
@@ -373,13 +373,13 @@ void buyer(void)
     while (pch != NULL)
     {
 
-        cartempty = 0;
+        ++cart_amount;
         strcpy(my_cart->idcode, pch);
         my_cart->next = (CART *)malloc(sizeof(CART));
         my_cart->next->next = NULL;
         my_cart = my_cart->next;
         pch = strtok(NULL, delim);
-        ++cart_amount;
+        
     }
     cart_end = my_cart;
 
@@ -408,9 +408,11 @@ void buyer(void)
             CART *cart_prev = cart_head;
             my_cart = cart_head;
             //if your cart is empty, skip to the beginning
-            if (cartempty)
+            if (cart_amount==0)
             {
                 printf("your cart is empty!\n");
+                getchar();
+                getchar();
                 continue;
             }
             printf("your cart ------------\n");
@@ -495,10 +497,7 @@ void buyer(void)
                 {
                     cart_head = cart_head->next;
                     free(my_cart);
-                    if (cart_head->next == NULL)
-                    {
-                        cartempty = 1;
-                    }
+                    --cart_amount;
                 }
                 else
                 {
@@ -517,6 +516,7 @@ void buyer(void)
                 printf("item deleted form your cart\n");
             }
 
+            //buy all in the cart
 			else if(choice==2){
                 char str[30]="bought by ";
                 strcat(str, accname);
@@ -550,7 +550,7 @@ void buyer(void)
             // add selected item to cart
             else if (choice2 == 2)
             {
-                cartempty = 0;
+                ++cart_amount;
                 //open space for new cart slot
                 my_cart = cart_end;
                 my_cart->next = (CART *)malloc(sizeof(CART));
@@ -584,7 +584,7 @@ void buyer(void)
         fprintf(fp2, "%s %s\n", name, pw);
         if (!strcmp(name, accname))
         {
-            if (!cartempty)
+            if (cart_amount!=0)
             {
 
                 while (cart_head->next != NULL)
@@ -809,7 +809,7 @@ void create_acc(void)
     printf("------------------------------------------------\n");
 
     FILE *fp;
-    char buff[20], input[20];
+    char input[20], buff[20], buff2[50];
     int choice, flag = 0;
 
     scanf("%d", &choice);
@@ -821,71 +821,95 @@ void create_acc(void)
 
     if (choice == 1)
     {
-        fprintf(fp, "\n%s", input);
-        fseek(fp, 0, SEEK_SET);
-        char buff2[20];
-        flag = 0;
-        while (!flag)
-        {
-            flag = 1;
-            printf("enter password(no space) : ");
-            scanf("%s", input);
-            while (fscanf(fp, "%s %s", buff2, buff) != EOF)
-            {
-                if (!strcmp(buff, input))
-                {
-                    flag = 0;
-                    printf("password exist!\n");
+        fp=fopen("buyer.txt", "a+");
+        while(1){
+            flag=1;
+            printf("input user name (no space, 0 to leave) : ");
+            getchar();
+            fgets(input, 20, stdin);
+            input[strlen(input)-1]='\0';
+            if(input[0]=='0'){
+                break;
+            }
+            for (int i=0;input[i]!='\0';++i){
+                if(input[i]==' '){
+                    flag=0;
+                    printf("there's a space in it!\n");
                     break;
                 }
             }
+            if(!flag){
+                continue;
+            }
+            fseek(fp, 0, SEEK_SET);
+            while(fscanf(fp, "%s %s", buff, buff2)!=EOF){
+                if(!strcmp(buff, input)){
+                    flag=0;
+                    printf("username already exist!\n");
+                    break;
+                }
+                fgets(buff2, 50, fp);
+            }
+            if(!flag){
+                continue;
+            }
+            strcpy(buff, input);
+            printf("input password (no space, 0 to input name again) : ");
+            scanf("%s", input);
+            if(input[0]=='0'){
+                continue;
+            }
+            fprintf(fp, "\n%s %s\n ", buff, input);
+            printf("account successfully created\n");
+            break;
         }
-        fprintf(fp, "%s", input);
     }
     else if (choice == 2)
     {
-        fp = fopen("seller.txt", "r+");
-
-        while (!flag)
-        {
-            flag = 1;
+        fp = fopen("seller.txt", "a+");
+        while(1){
+            flag=1;
+            printf("input user name (no space, 0 to leave) : ");
+            getchar();
+            fgets(input, 20, stdin);
+            input[strlen(input)-1]='\0';
+            if(input[0]=='0'){
+                break;
+            }
+            for (int i=0;input[i]!='\0';++i){
+                if(input[i]==' '){
+                    flag=0;
+                    printf("there's a space in it!\n");
+                    break;
+                }
+            }
+            if(!flag){
+                continue;
+            }
             fseek(fp, 0, SEEK_SET);
-            printf("enter username(no space) : ");
-            scanf("%s", input);
-            while (fscanf(fp, "%s", buff) != EOF)
-            {
-                if (!strcmp(buff, input))
-                {
-                    flag = 0;
-                    printf("username exist!\n");
+            while(fscanf(fp, "%s %s", buff, buff2)!=EOF){
+                if(!strcmp(buff, input)){
+                    flag=0;
+                    printf("username already exist!\n");
                     break;
                 }
+                fgets(buff2, 50, fp);
             }
-        }
-
-        fprintf(fp, "\n%s ", input);
-        fseek(fp, 0, SEEK_SET);
-        flag = 0;
-        char buff2[20];
-
-        while (!flag)
-        {
-            flag = 1;
-            printf("enter password(no space) : ");
+            if(!flag){
+                continue;
+            }
+            strcpy(buff, input);
+            printf("input password (no space, 0 to input name again) : ");
             scanf("%s", input);
-            while (fscanf(fp, "%s %s", buff2, buff) != EOF)
-            {
-                if (!strcmp(buff, input))
-                {
-                    flag = 0;
-                    printf("password exist!\n");
-                    break;
-                }
+            if(input[0]=='0'){
+                continue;
             }
+            fprintf(fp, "\n%s %s", buff, input);
+            printf("account successfully created\n");
+            break;
         }
-
-        fprintf(fp, "%s", input);
     }
+    fclose(fp);
 }
 
 int delete (char profile[], int choice)
