@@ -3,7 +3,7 @@ macbook 2018
 allan
 62000.000000
 #3871<
-20
+19
 razer mouse
 rgb light, black
 kay
@@ -21,13 +21,13 @@ anti-noise
 allan
 890.000000
 #9540<
-12
+11
 under armour curry 9000
 blue & yellow
 edral
 3000.000000
 #0248<
-3
+2
 iphone 12 pro
 latest flagship phone
 alan(admin)
@@ -39,10 +39,22 @@ education use
 allan
 200.000000
 #7938<
-7
+6
 medical face mask
 very important when pandemic
 alan(admin)
 10.000000
 #0904<
 20
+pple
+a kind of fruit
+Peter_luo
+40.000000
+#0979<
+200
+Dog
+an animal
+Peter_luo
+600.000000
+#5492<
+0

@@ -133,3 +133,55 @@ Fri Apr 10 23:34:36 2020
     price : 10.000000
     amount : 20
 
+Sat Apr 18 11:52:48 2020
+(bought by Tony)
+----seller : allan
+----name : C tutorial
+    description : education use
+    price : 200.000000
+    amount : 6
+
+Sat Apr 18 11:56:01 2020
+(added by seller)
+----seller : Peter_luo
+----name : pple
+    description : a kind of fruit
+
+Sat Apr 18 11:56:01 2020
+(added by seller)
+----seller : Peter_luo
+----name : Dog
+    description : an animal
+
+Sat Apr 18 11:58:14 2020
+(bought by Tony)
+----seller : Peter_luo
+----name : Dog
+    description : an animal
+    price : 600.000000
+    amount : 0
+
+Sat Apr 18 11:58:14 2020
+(bought by Tony)
+----seller : allan
+----name : macbook 2018
+    description : 15'
+    price : 62000.000000
+    amount : 19
+
+Sat Apr 18 11:58:14 2020
+(bought by Tony)
+----seller : allan
+----name : Sony earnest
+    description : anti-noise
+    price : 890.000000
+    amount : 11
+
+Sat Apr 18 11:58:14 2020
+(bought by Tony)
+----seller : edral
+----name : under armour curry 9000
+    description : blue & yellow
+    price : 3000.000000
+    amount : 2
+
