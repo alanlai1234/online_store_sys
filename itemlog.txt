@@ -1,187 +1,56 @@
-Tue Mar  3 22:37:15 2020
-(bought by Tony)
-----seller : allan
-----name : C book 
-    description : education use
-    price : 200.000000
-    amount : 21
-Sat Apr  4 18:55:00 2020
-(bought by Tony)
-----seller : allan
-----name : C book 
-    description : education use
-    price : 200.000000
-    amount : 7
-
-Fri Apr 10 23:06:48 2020
-(bought by Tony)
-----seller : allan
-----name : sony earset
-    description : anti-noise
-    price : 890.000000
-    amount : 12
-
-Fri Apr 10 23:06:48 2020
-(bought by Tony)
-----seller : edral
-----name : under armour curry 9000
-    description : blue & yellow
-    price : 3000.000000
-    amount : 2
-
-Fri Apr 10 23:20:44 2020
+Fri May  1 23:20:23 2020
 (bought by Tony)
 ----seller : allan
 ----name : Sony earnest
     description : anti-noise
     price : 890.000000
-    amount : 11
+    amount : 9
 
-Fri Apr 10 23:20:44 2020
+Fri May  1 23:20:23 2020
 (bought by Tony)
-----seller : edral
-----name : under armour curry 9000
-    description : blue & yellow
-    price : 3000.000000
-    amount : 2
-
-Fri Apr 10 23:21:36 2020
-(bought by Tony)
-----seller : allan
-----name : Sony earnest
-    description : anti-noise
-    price : 890.000000
-    amount : 11
-
-Fri Apr 10 23:21:36 2020
-(bought by Tony)
-----seller : edral
-----name : under armour curry 9000
-    description : blue & yellow
-    price : 3000.000000
-    amount : 2
-
-Fri Apr 10 23:22:05 2020
-(bought by Tony)
-----seller : allan
-----name : Sony earnest
-    description : anti-noise
-    price : 890.000000
-    amount : 11
-
-Fri Apr 10 23:22:05 2020
-(bought by Tony)
-----seller : edral
-----name : under armour curry 9000
-    description : blue & yellow
-    price : 3000.000000
-    amount : 2
-
-Fri Apr 10 23:22:33 2020
-(bought by Tony)
-----seller : allan
-----name : C tutorial
-    description : education use
-    price : 200.000000
-    amount : 6
-
-Fri Apr 10 23:24:21 2020
-(removed by admin)
-----seller : allan
-----name : C tutorial
-    description : education use
-    price : 200.000000
-    amount : 7
-
-Fri Apr 10 23:24:47 2020
-(bought by Tony)
-----seller : allan
-----name : C tutorial
-    description : education use
-    price : 200.000000
-    amount : 6
-
-Fri Apr 10 23:25:07 2020
-(bought by Tony)
-----seller : allan
-----name : C tutorial
-    description : education use
-    price : 200.000000
-    amount : 7
-
-Fri Apr 10 23:27:40 2020
-(bought by Tony)
-----seller : allan
-----name : C tutorial
-    description : education use
-    price : 200.000000
-    amount : 6
-
-Fri Apr 10 23:32:05 2020
-(added by admin)
-----seller : alan(admin)
-----name : face mask
-    description : very important when pandemic
-    price : 10.000000
-    amount : 20
-
-Fri Apr 10 23:34:36 2020
-(added by admin)
-----seller : alan(admin)
-----name : medical face mask
-    description : very important when pandemic
-    price : 10.000000
-    amount : 20
-
-Sat Apr 18 11:52:48 2020
-(bought by Tony)
-----seller : allan
-----name : C tutorial
-    description : education use
-    price : 200.000000
-    amount : 6
-
-Sat Apr 18 11:56:01 2020
-(added by seller)
 ----seller : Peter_luo
-----name : pple
+----name : apple
     description : a kind of fruit
+    price : 40.000000
+    amount : 198
 
-Sat Apr 18 11:56:01 2020
-(added by seller)
-----seller : Peter_luo
-----name : Dog
-    description : an animal
-
-Sat Apr 18 11:58:14 2020
+Fri May  1 23:20:23 2020
 (bought by Tony)
 ----seller : Peter_luo
-----name : Dog
-    description : an animal
-    price : 600.000000
-    amount : 0
+----name : apple
+    description : a kind of fruit
+    price : 40.000000
+    amount : 197
 
-Sat Apr 18 11:58:14 2020
+Fri May  1 23:24:00 2020
 (bought by Tony)
-----seller : allan
-----name : macbook 2018
-    description : 15'
-    price : 62000.000000
-    amount : 19
+----seller : Peter_luo
+----name : apple
+    description : a kind of fruit
+    price : 40.000000
+    amount : 196
 
-Sat Apr 18 11:58:14 2020
+Fri May  1 23:24:00 2020
 (bought by Tony)
-----seller : allan
-----name : Sony earnest
-    description : anti-noise
-    price : 890.000000
-    amount : 11
+----seller : Peter_luo
+----name : apple
+    description : a kind of fruit
+    price : 40.000000
+    amount : 195
 
-Sat Apr 18 11:58:14 2020
+Fri May  1 23:24:00 2020
 (bought by Tony)
-----seller : edral
-----name : under armour curry 9000
-    description : blue & yellow
-    price : 3000.000000
-    amount : 2
+----seller : Peter_luo
+----name : apple
+    description : a kind of fruit
+    price : 40.000000
+    amount : 194
+
+Fri May  1 23:25:06 2020
+(bought by Tony)
+----seller : Peter_luo
+----name : apple
+    description : a kind of fruit
+    price : 40.000000
+    amount : 193
 

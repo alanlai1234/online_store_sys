@@ -21,13 +21,13 @@ anti-noise
 allan
 890.000000
 #9540<
-11
+9
 under armour curry 9000
 blue & yellow
 edral
 3000.000000
 #0248<
-2
+1
 iphone 12 pro
 latest flagship phone
 alan(admin)
@@ -46,12 +46,12 @@ alan(admin)
 10.000000
 #0904<
 20
-pple
+apple
 a kind of fruit
 Peter_luo
 40.000000
 #0979<
-200
+193
 Dog
 an animal
 Peter_luo

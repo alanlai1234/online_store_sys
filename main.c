@@ -15,7 +15,7 @@ FILE *itemlog;
 time_t now;
 
 //login info
-// char accname[20];
+char accname[20];
 
 void admin(void);
 void buyer(void);
@@ -475,7 +475,7 @@ void buyer(void)
 
             printf("total : $%f\n\n", total);
 
-            printf("1)delete item 2)payment 3)exit : ");
+            printf("1)delete item 2)check 3)exit : ");
             scanf("%d", &choice);
 
             //delete item from cart
@@ -514,6 +514,7 @@ void buyer(void)
                     }
                 }
                 printf("item deleted form your cart\n");
+				getchar();
             }
 
             //buy all in the cart
@@ -523,7 +524,8 @@ void buyer(void)
 				for (int i=0;i<index;++i){
                     delete(str, cache[i]);
                 }
-                getchar();
+				getchar();
+				getchar();
  			}
         }
 
@@ -545,6 +547,8 @@ void buyer(void)
                 char str[30] = "bought by ";
                 strcat(str, accname);
                 delete (str, choice);
+				getchar();
+				getchar();
             }
 
             // add selected item to cart
@@ -570,6 +574,7 @@ void buyer(void)
 
                 strcpy(my_cart->idcode, tmp->idcode);
                 printf("item added to your cart\n");
+				getchar();
             }
         }
     }
@@ -648,7 +653,6 @@ void seller(void)
 
             //name
             printf("input product name (max 50 words) : ");
-            getchar();
             fgets(buff, 50, stdin);
             buff[strlen(buff) - 1] = '\0';
             strcpy(tmp->name, buff);
@@ -948,6 +952,7 @@ int delete (char profile[], int choice)
         }
         free(tmp);
         printf("item deleted\n");
+		getchar();
     }
     //if a buyer buys an item the amount minus 1 or appear sold out when there's none left
     else
@@ -956,12 +961,10 @@ int delete (char profile[], int choice)
         {
             printf("\nitem [%s] has been lacking or sold out\n", tmp->name);
             fflush(stdin);
-            getchar();
             return 1;
         }
         tmp->amount -= 1;
-        printf("transaction completed\n");
-        getchar();
+        printf("product - [%s] transaction completed\n", tmp->name);
     }
 
     fprintf(itemlog, "%s(%s)\n----seller : %s\n----name : %s\n    description : %s\n    price : %f\n    amount : %d\n\n", ctime(&now), profile, tmp->seller, tmp->name, tmp->descrip, tmp->price, tmp->amount);
