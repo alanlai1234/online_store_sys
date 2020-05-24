@@ -1,12 +1,8 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ncurses.h>
 
 typedef struct cart
 {
     char idcode[10];
-	int amount;
     struct cart *next;
 }CART;
 
@@ -24,18 +20,20 @@ typedef struct item
 char accname[20];
 
 void print_item(ITEM *head){
-	// TODO it will print out of the screen
     ITEM *move=head;
     int cur=1;
-	clear();
-	attron(COLOR_PAIR(4));
+    printf("\033[1;32m");
 
     while(move->next!=NULL){
-        printw("(%d) $%f\nitem name : %s\n\n", cur++, move->price, move->name);
+        printf("(%d) $%f\nitem name : %s\n", cur++, move->price, move->name);
+        printf("description : %s\n", move->descrip);
+        printf("seller : %s\n", move->seller);
+        printf("id code : %s\n", move->idcode);
+        printf("amount : %d\n\n", move->amount);
         move=move->next;
     }
 
-	attron(COLOR_PAIR(2));
+    printf("\033[0m");
 }
 
 int login(char filename[]){
@@ -43,15 +41,15 @@ int login(char filename[]){
     int flag;
     FILE *fp;
     fp=fopen(filename, "r");
-	clear();
-	curs_set(1);
+    printf("login page-----------------------------\n");
+
     while(1){
         flag=0;
         //back from start
         fseek(fp, 0, SEEK_SET);
 
-        printw("enter user name, enter 0 to exit : ");
-		scanw("%s", name);
+        printf("enter user name, or 0 to exit : ");
+        scanf("%s", name);
 
         //exit
         if(!strcmp(name, "0")){
@@ -70,10 +68,9 @@ int login(char filename[]){
         
         //if inputted name found
         if(flag){
-			clear();
             while(1){
-                printw("enter password, or 0 to enter username again : ");
-                scanw("%s", pw);
+                printf("enter password, or 0 to enter username again : ");
+                scanf("%s", pw);
                 //back to input name
                 if(!strcmp(pw, "0")){
                     break;
@@ -81,16 +78,16 @@ int login(char filename[]){
                 //password correct
                 if(!strcmp(pw, psw_login)){
                     strcpy(accname, name);
+                    printf("\033[0;31m");
+                    printf("welcome back %s!\n", accname);
+                    printf("\033[0m");
                     fclose(fp);
-					
                     return 1;
                 }
-				clear();
-                printw("password not match\n");
+                printf("password not match\n");
             }
             continue;
         }
-		clear();
-        printw("name not found\n");
+        printf("name not found\n");
     }
 }

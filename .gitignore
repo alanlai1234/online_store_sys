@@ -3,5 +3,6 @@
 *.out
 =======
 main
+makefile
 .DS_Store
 >>>>>>> 03e9b359275efa8a78d8538dea6078ec14ff558f

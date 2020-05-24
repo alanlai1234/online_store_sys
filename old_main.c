@@ -2,10 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include <ncurses.h>
-#include "custom.h"
-#define MAIN_MENU_MAX 5
-#define KEY_RETURN 10
+#include "old_custom.h"
+
 //item code format
 // code[0]='#';
 // for(int i=1;i<5;i++) {code[i]=(rand()%10)+'0';}
@@ -19,7 +17,7 @@ time_t now;
 //login info
 char accname[20];
 
-int admin(void);
+void admin(void);
 void buyer(void);
 void seller(void);
 void create_acc(void);
@@ -28,11 +26,6 @@ int delete (char profile[], int choice);
 int main(void)
 {
 
-	initscr();
-	use_default_colors();
-	start_color();
-	refresh();
-	keypad(stdscr,TRUE);
     //0=if the system has been shut down, 1=still operates
     int flag;
     FILE *op = fopen("operate.txt", "r");
@@ -40,16 +33,15 @@ int main(void)
     fclose(op);
     if (!flag)
     {
-		printw("the system had been shut down, authenticate with adminstrater account to activate system operations\n");
-		if (login("admin.txt"))
+        printf("the system had been shut down, authenticate with adminstrater account to activate system operations\n");
+        if (login("admin.xt"))
         {
             FILE *op2 = fopen("operate.txt", "w+");
             fprintf(op2, "1");
-            printw("system restarted\n");
+            printf("system restarted\n");
         }
 		else
         {
-			endwin();
             return 0;
         }
     }
@@ -85,86 +77,46 @@ int main(void)
     //open item's log
     itemlog = fopen("itemlog.txt", "a+");
 
-	// start main page
-	printw("welcome to Alan's store system\n\n");
-	int pos=0;
-	char menu_list[5][30]={"1)adminstrater\0", "2)buyer\0", "3)seller\0", "4)sign up\0", "0)exit\0"};
-	init_pair(1, COLOR_RED, -1);
-	init_pair(3, COLOR_YELLOW, -1);
-	init_pair(2, -1, -1);
-	init_pair(4, COLOR_GREEN, -1);
-	int close=0;
-	while (!close)
-	{
-		clear();
-		curs_set(0);
-		attron(COLOR_PAIR(1));
-		printw("main page------------------------------------------------\n");
-		attron(COLOR_PAIR(2));
-		for (int i = 0; i < MAIN_MENU_MAX; ++i) {
-			if(i==pos){
-				attron(COLOR_PAIR(3));
-				printw("%s ", menu_list[i]);
-				attron(COLOR_PAIR(2));
-			}
-			else{
-				printw("%s ", menu_list[i]);
-			}
-		}
-		//detect
-		int ch;
-		ch=getch();
+    printf("welcome to Alan's store system\n\n");
 
-		switch (ch)
-		{
-		case KEY_RIGHT:
-			if(pos+1!=MAIN_MENU_MAX){
-				++pos;
-				break;
-			}
-			else{
-				pos=0;
-			}
-			break;
+    int choice;
+    while (1)
+    {
 
-		case KEY_LEFT:
-			if(pos!=0){
-				--pos;
-				break;
-			}
-			else{
-				pos=MAIN_MENU_MAX-1;
-			}
-			break;
-		
-		case KEY_RETURN:
-			switch (pos) {
-				case 0:
-					// admin will return 1 if admin shut the system down
-					close=admin();
-					break;
-				case 1:
-					buyer();
-					break;
-				case 2:
-					seller();
-					break;
-				case 3:
-					create_acc();
-					break;
-				case 4:
-					close=1;
-					break;
+        printf("\033[0;31m");
+        printf("main page------------------------------------------------\n");
+        printf("\033[0m");
+        printf("1)adminstrater 2)buyer 3)seller 4)sign up 0)exit : ");
+        scanf("%d", &choice);
 
-				default:
-					break;
-			}
-			break;
-		default:
-			break;
-		}
-	}
-	endwin();
+        //exit
+        if (choice == 0)
+        {
+            break;
+        }
+
+        switch (choice)
+        {
+        case 1:
+            admin();
+            break;
+
+        case 2:
+            buyer();
+            break;
+
+        case 3:
+            seller();
+            break;
+
+        case 4:
+            create_acc();
+            break;
+
+        default:
+            break;
+        }
+    }
 
     //save item changes
     FILE *cpy;
@@ -182,190 +134,156 @@ int main(void)
     fclose(fp);
 }
 
-int admin(void)
+void admin(void)
 {
 
-	if (!login("admin.txt"))
-	{
-		return 0;
-	}
-	int pos=0, close=0;
-	const int max_list=6;
-	char lists[6][30]={"1)show all items\0", "2)add item\0", "3)delete item\0", "4)print item log\0", "5)shut down system\0", "0)exit\0"};
-	curs_set(0);
-    while (!close)
+    if (!login("admin.txt"))
     {
-		clear();
-        printw("adminstrater page-------------------------------\n");
-		for (int i = 0; i < max_list; ++i) {
-			if(i==pos){
-				attron(COLOR_PAIR(3));
-				printw("%s\n", lists[i]);
-				attron(COLOR_PAIR(2));
-			}
-			else{
-				printw("%s\n", lists[i]);
-			}
-		}
-        printw("------------------------------------------------\n");
-
-        int choice, ch;
-		ch=getch();
-
-        switch (ch)
-        {
-		case KEY_DOWN:
-			if(pos<max_list){
-				pos++;
-			}
-			else{
-				pos=0;
-			}
-			break;
-		case KEY_UP:
-			if(pos>0){
-				--pos;
-			}
-			else{
-				pos=max_list-1;
-			}
-			break;
-		case KEY_RETURN:
-
-			switch (pos+1){
-			//show items
-			case 1:
-				print_item(head);
-				getch();
-				break;
-
-			//add item
-			case 2:
-			{
-				//open space
-				ITEM *tmp = end;
-				tmp->next = (ITEM *)malloc(sizeof(ITEM));
-				tmp->next->next = NULL;
-				end = tmp->next;
-				char buff[50];
-
-				fflush(stdin);
-
-				//name
-				printf("input product name (max 50 words) : ");
-				// getchar();
-				fgets(buff, 50, stdin);
-				buff[strlen(buff) - 1] = '\0';
-				strcpy(tmp->name, buff);
-
-				fflush(stdin);
-
-				//description
-				printf("input product description (max 100 words) : ");
-				fgets(buff, 100, stdin);
-				buff[strlen(buff) - 1] = '\0';
-				strcpy(tmp->descrip, buff);
-
-				//price
-				printf("set the price : ");
-				scanf("%f", &tmp->price);
-
-				//generate code
-				char code[10];
-				int f;
-				ITEM *find;
-				do
-				{
-					f = 1;
-					find = head;
-					code[0] = '#';
-					for (int i = 1; i < 5; i++)
-					{
-						code[i] = (rand() % 10) + '0';
-					}
-					code[5] = '<';
-					code[6] = '\0';
-					//check if generated idcode is duplicated
-					while (find->next != NULL)
-					{
-						if (!strcmp(find->idcode, code))
-						{
-							f = 0;
-							break;
-						}
-						find = find->next;
-					}
-				} while (f == 0);
-				strcpy(tmp->idcode, code);
-
-				//amount
-				printf("amount : ");
-				scanf("%d", &tmp->amount);
-
-				//seller
-				char tmpstr[] = "(admin)";
-				strcat(accname, tmpstr);
-				strcpy(tmp->seller, accname);
-
-				//item log
-				fprintf(itemlog, "%s(added by admin)\n----seller : %s\n----name : %s\n    description : %s\n    price : %f\n    amount : %d\n\n", ctime(&now), tmp->seller, tmp->name, tmp->descrip, tmp->price, tmp->amount);
-
-				printf("successfully added\n");
-				getchar();
-				break;
-			}
-
-			//delete item
-			case 3:
-			{
-				print_item(head);
-				printf("enter id (-1 to exit) : ");
-				scanf("%d", &choice);
-
-				//exit
-				if (choice == -1)
-				{
-					break;
-				}
-
-				//delete
-				delete("removed by admin", choice);
-				break;
-			}
-			//print itemlog
-			case 4:
-			{
-
-				fseek(itemlog, 0, SEEK_SET);
-				char buff[80];
-				while (fgets(buff, 80, itemlog) != NULL)
-				{
-					printf("%s", buff);
-				}
-				getchar();
-				continue;
-				
-			}
-			//shut down system
-			case 5:
-			{
-				// printf("hi\n");
-				FILE *op = fopen("operate.txt", "w+");
-				fprintf(op, "0");
-				fclose(op);
-				printw("system closed\n");
-				getch();
-				return 1;
-			}
-			case 6:
-				close=1;
-				break;
-			default:
-				break;
-			}
-		}
+        return;
     }
-	return 0;
+    while (1)
+    {
+        printf("adminstrater page-------------------------------\n");
+        printf("1)show all items\n2)add item\n3)delete item\n4)print item log\n5)shut down system\n0)exit\n");
+        printf("------------------------------------------------\n");
+
+        int choice;
+        scanf("%d", &choice);
+
+        //exit
+        if (choice == 0)
+        {
+            break;
+        }
+        switch (choice)
+        {
+        //show items
+        case 1:
+            print_item(head);
+            getchar();
+            break;
+
+        //add item
+        case 2:
+        {
+            //open space
+            ITEM *tmp = end;
+            tmp->next = (ITEM *)malloc(sizeof(ITEM));
+            tmp->next->next = NULL;
+            end = tmp->next;
+            char buff[50];
+
+            fflush(stdin);
+
+            //name
+            printf("input product name (max 50 words) : ");
+            // getchar();
+            fgets(buff, 50, stdin);
+            buff[strlen(buff) - 1] = '\0';
+            strcpy(tmp->name, buff);
+
+            fflush(stdin);
+
+            //description
+            printf("input product description (max 100 words) : ");
+            fgets(buff, 100, stdin);
+            buff[strlen(buff) - 1] = '\0';
+            strcpy(tmp->descrip, buff);
+
+            //price
+            printf("set the price : ");
+            scanf("%f", &tmp->price);
+
+            //generate code
+            char code[10];
+            int f;
+            ITEM *find;
+            do
+            {
+                f = 1;
+                find = head;
+                code[0] = '#';
+                for (int i = 1; i < 5; i++)
+                {
+                    code[i] = (rand() % 10) + '0';
+                }
+                code[5] = '<';
+                code[6] = '\0';
+                //check if generated idcode is duplicated
+                while (find->next != NULL)
+                {
+                    if (!strcmp(find->idcode, code))
+                    {
+                        f = 0;
+                        break;
+                    }
+                    find = find->next;
+                }
+            } while (f == 0);
+            strcpy(tmp->idcode, code);
+
+            //amount
+            printf("amount : ");
+            scanf("%d", &tmp->amount);
+
+            //seller
+            char tmpstr[] = "(admin)";
+            strcat(accname, tmpstr);
+            strcpy(tmp->seller, accname);
+
+            //item log
+            fprintf(itemlog, "%s(added by admin)\n----seller : %s\n----name : %s\n    description : %s\n    price : %f\n    amount : %d\n\n", ctime(&now), tmp->seller, tmp->name, tmp->descrip, tmp->price, tmp->amount);
+
+            printf("successfully added\n");
+            getchar();
+            break;
+        }
+
+        //delete item
+        case 3:
+        {
+            print_item(head);
+            printf("enter id (-1 to exit) : ");
+            scanf("%d", &choice);
+
+            //exit
+            if (choice == -1)
+            {
+                break;
+            }
+
+            //delete
+            delete("removed by admin", choice);
+            break;
+        }
+        //print itemlog
+        case 4:
+        {
+
+            fseek(itemlog, 0, SEEK_SET);
+            char buff[80];
+            while (fgets(buff, 80, itemlog) != NULL)
+            {
+                printf("%s", buff);
+            }
+            getchar();
+            continue;
+            
+        }
+        //shut down system
+        case 5:
+        {
+            // printf("hi\n");
+            FILE *op = fopen("operate.txt", "w+");
+            fprintf(op, "0");
+            fclose(op);
+            printf("system closed\n");
+            exit(1);
+        }
+        default:
+            break;
+        }
+    }
 }
 
 void buyer(void)
@@ -636,9 +554,6 @@ void buyer(void)
             // add selected item to cart
             else if (choice2 == 2)
             {
-				printf("amount : ");
-				scanf("%d", &choice2); //here choice2 is the amount of item added to cart
-				//TODO keep add amouht system
                 ++cart_amount;
                 //open space for new cart slot
                 my_cart = cart_end;
