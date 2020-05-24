@@ -2,6 +2,7 @@
 !*.*
 *.out
 =======
+old_main
 main
 makefile
 .DS_Store
