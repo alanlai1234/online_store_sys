@@ -215,7 +215,7 @@ int admin(void)
         switch (ch)
         {
 		case KEY_DOWN:
-			if(pos<max_list){
+			if(pos<max_list-1){
 				pos++;
 			}
 			else{
@@ -236,7 +236,6 @@ int admin(void)
 			//show items
 			case 1:
 				print_item(head);
-				getch();
 				break;
 
 			//add item

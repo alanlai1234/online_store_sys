@@ -45,16 +45,22 @@ very important when pandemic
 alan(admin)
 10.000000
 #0904<
-20
+17
 apple
 a kind of fruit
 Peter_luo
 40.000000
 #0979<
-193
+188
 Dog
 an animal
 Peter_luo
 600.000000
 #5492<
 0
+yellow pigoen
+very cute pet
+allan
+1000.000000
+#4273<
+2

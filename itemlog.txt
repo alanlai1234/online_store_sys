@@ -54,3 +54,89 @@ Fri May  1 23:25:06 2020
     price : 40.000000
     amount : 193
 
+Sun May 24 22:24:45 2020
+(added by admin)
+----seller : alan(admin)
+----name : yellow pigeon
+    description : very cute little pet
+    price : 1000.000000
+    amount : 2
+
+Sun May 24 22:26:30 2020
+(removed by admin)
+----seller : alan(admin)
+----name : yellow pigeon
+    description : very cute little pet
+    price : 1000.000000
+    amount : 2
+
+Sun May 24 22:27:00 2020
+(bought by Tony)
+----seller : Peter_luo
+----name : apple
+    description : a kind of fruit
+    price : 40.000000
+    amount : 192
+
+Sun May 24 22:27:00 2020
+(bought by Tony)
+----seller : Peter_luo
+----name : apple
+    description : a kind of fruit
+    price : 40.000000
+    amount : 191
+
+Sun May 24 22:27:00 2020
+(bought by Tony)
+----seller : alan(admin)
+----name : medical face mask
+    description : very important when pandemic
+    price : 10.000000
+    amount : 19
+
+Sun May 24 22:30:08 2020
+(bought by Tony)
+----seller : Peter_luo
+----name : apple
+    description : a kind of fruit
+    price : 40.000000
+    amount : 190
+
+Sun May 24 22:30:08 2020
+(added by seller)
+----seller : allan
+----name : yellow pigoen
+    description : very cute pet
+
+Sun May 31 00:26:16 2020
+(bought by Tony)
+----seller : alan(admin)
+----name : medical face mask
+    description : very important when pandemic
+    price : 10.000000
+    amount : 18
+
+Sun May 31 00:26:16 2020
+(bought by Tony)
+----seller : Peter_luo
+----name : apple
+    description : a kind of fruit
+    price : 40.000000
+    amount : 189
+
+Sun May 31 00:26:16 2020
+(bought by Tony)
+----seller : Peter_luo
+----name : apple
+    description : a kind of fruit
+    price : 40.000000
+    amount : 188
+
+Sun May 31 00:26:16 2020
+(bought by Tony)
+----seller : alan(admin)
+----name : medical face mask
+    description : very important when pandemic
+    price : 10.000000
+    amount : 17
+
