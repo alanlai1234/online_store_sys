@@ -38,16 +38,12 @@ int print_item(ITEM *head){
 
 	while (ch!='q'){
 		cur=1;
-		// while(move->next!=NULL && cur*2<LINES){
-			// wprintw(win, "(%d) $%f - item name : %s\n\n", cur++, move->price, move->name);
-			// move=move->next;
-		// }
 		move=head;
 		while(move->next!=NULL){
 			wprintw(win, "(%d) $%f - item name : %s\n\n", cur++, move->price, move->name);
 			move=move->next;
 		}
-		wscrl(win, -5);
+		// wscrl(win, -5);
 		ch=wgetch(win);
 		switch(ch){
 			case KEY_DOWN:
@@ -103,8 +99,8 @@ int login(char filename[]){
         if(flag){
 			clear();
             while(1){
-                printw("enter password, or 0 to enter username again : ");
-				printw(L"%lc", key_icons);
+                printw("enter password, or 0 to enter username again : *");
+				// printw(L"%lc", key_icons);
 				noecho();
                 scanw("%s", pw);
 				echo();
